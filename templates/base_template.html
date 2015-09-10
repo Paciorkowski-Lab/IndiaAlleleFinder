@@ -1,0 +1,30 @@
+<!-- $def with (name)
+    $if name:
+        I just wanted to say <em>hello</em> to $name.
+    $else:
+        <em>Hello</em> World!-->
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta charset=utf-8>
+
+        {% block head %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css' }}">
+        <title>India Allele Finder</title>
+        {% endblock %}
+    </head>
+    <body>
+        <div>
+            <img src="{{ url_for('img', filename='img/logo.svg') }}" alt='logo'>
+        </div> 
+        
+        <form action="{{ url_for('search') }}" method="GET" id="searchBar">
+          <div> <b>India Allele Finder</b>
+          <input type="search" name="search" placeholder="type in a gene for variant" >
+          <input type="submit" style="position: absolute; top: 0; left: 0; z-index: 0; width: 1px; height: 1px; visibility: hidden;">
+        </form>        
+        <div class='example'>Accepted Formats: Gene: PCSK9, Variant: 22-46615880-T-C, Multi-allelic variant: rs1800234, Region: 22:46615715-46615880</div>
+    </body>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='bootstrap.js') }} "></script>
+</html>
