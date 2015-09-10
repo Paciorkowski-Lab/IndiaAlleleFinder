@@ -10,7 +10,8 @@
 }
 
 body { 
-	font-family: 'ImprintMT-Shadow';
+	/*font-family: 'ImprintMT-Shadow';*/
+  font-family: 'Scheherazade', serif;
 }
 
 #iaf-logo {
@@ -21,7 +22,13 @@ body {
 .site-wrapper-inner {
   /*vertical-align: middle;*/
   position: relative;
-  top: 30%;
+  top: 20%;
+}
+
+@-moz-document url-prefix() { 
+  .site-wrapper-inner {
+     padding-top: 15%;
+  }
 }
 
 .navbar .navbar-nav{
