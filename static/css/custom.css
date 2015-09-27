@@ -12,10 +12,30 @@
 body { 
 	/*font-family: 'ImprintMT-Shadow';*/
   font-family: 'Scheherazade', serif;
+  font-size: 28px;
 }
 
 #iaf-logo {
-	width: 100%;
+  width: 80%;
+}
+
+.cover-heading {
+  font-size: 44px;
+  margin-bottom: 0px;
+}
+
+.lead {
+  font-size: 24px;
+}
+
+#searchBar {
+  font-size: 16px;
+  margin: 0 auto;
+  /*width: 40%;*/
+}
+
+input[type="search"] {
+  width: 40%;
 }
 
 /* Start the vertical centering */
@@ -37,9 +57,17 @@ body {
 }
 
 .navbar-default {
-	
+  font-size: 1.2em;
 }
 
 .navbar .navbar-collapse{
 	text-align: center;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #333;
+  background-color: rgba(0,0,0,0);
+  text-decoration: underline;
 }

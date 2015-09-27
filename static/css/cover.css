@@ -6,7 +6,7 @@
 a,
 a:focus,
 a:hover {
-  color: #fff;
+  color: #555;
 }
 
 /* Custom default button */
@@ -128,10 +128,13 @@ body {
  */
 
 .mastfoot {
-  color: #999; /* IE8 proofing */
-  color: rgba(255,255,255,.5);
+/*  color: #999;  IE8 proofing 
+  color: rgba(255,255,255,.5);*/
 }
 
+.mastfoot > div {
+  font-size: 18px;
+}
 
 /*
  * Affix and center
@@ -160,6 +163,6 @@ body {
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 700px;
+    width: 750px;
   }
 }

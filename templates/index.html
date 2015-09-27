@@ -30,22 +30,22 @@
               </div>
 
               <div class="inner cover">
-                <h1 class="cover-heading">Find Allele Frequencies for the Indian Population.</h1>
+                <h1 class="cover-heading">Find Allele Frequencies for the Indian Population</h1>
                 <p class="lead">Accepted Formats: Gene: PCSK9, Variant: 22-46615880-T-C, Multi-allelic variant: rs1800234, Region: 22:46615715-46615880</p>
                 <p class="lead">
                     <form action="{{ url_for('search') }}" method="GET" id="searchBar">
-                        <input type="search" placeholder="type in a gene for variant" >
+                        <input type="search" placeholder="" >
                         <input type="submit" style="position: absolute; top: 0; left: 0; z-index: 0; width: 1px; height: 1px; visibility: hidden;">
                     </form>  
                   <!-- <a href="#" class="btn btn-lg btn-default">Learn more</a> -->
                 </p>
               </div>
 
-<!--               <div class="mastfoot">
+              <div class="mastfoot">
                 <div class="inner">
-                  <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+                  <div>cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>. modded by <a href="https://twitter.com/imyjimmy">@imyjimmy</a>. made for <a href="https://paciorkowski-lab.urmc.rochester.edu/home">Paciorkowski Lab</a>.</div>
                 </div>
-              </div> -->
+              </div>
             </div>
           </div>
         </div>
@@ -58,6 +58,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- <script src="../../dist/js/bootstrap.min.js"></script> -->
     <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }} "></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/custom.js') }} "></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{{ url_for('static', filename='js/ie10-viewport-bug-workaround.js') }} "></script>
 </html>
