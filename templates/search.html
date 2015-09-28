@@ -1,8 +1,9 @@
 <!DOCTYPE html>
     <head>
         <meta charset="utf-8">
-        <meta charset=utf-8>
         {% block head %}
+        <link href='https://fonts.googleapis.com/css?family=Scheherazade:400,700' rel='stylesheet' type='text/css'>
+        
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cover.css') }} ">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css') }}">
@@ -16,7 +17,7 @@
               <div class="masthead clearfix"> <!--nav bar-->
                 <div class="inner">
                     <!-- <h3 class="masthead-brand">-->
-                    <div><img id="iaf-logo" src="{{ url_for('static', filename='img/logo.svg') }}" alt='logo'></h3></div>
+                    <div><img id="iaf-logo" src="{{ url_for('static', filename='img/logo.svg') }}" alt='logo'></div>
                 <nav class="navbar navbar-default">
                     <ul class="nav navbar-nav">
                       <li class="active"><a href="#">Home</a></li>
@@ -50,11 +51,11 @@
                 <div>{{ results }}</div>
                 <div>{{ h }}</div>
 
-<!--               <div class="mastfoot">
+              <div class="mastfoot">
                 <div class="inner">
-                  <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+                  <div>cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>. modded by <a href="https://twitter.com/imyjimmy">@imyjimmy</a>. made for <a href="https://paciorkowski-lab.urmc.rochester.edu/home">Paciorkowski Lab</a>.</div>
                 </div>
-              </div> -->
+              </div>
             </div>
           </div>
         </div>

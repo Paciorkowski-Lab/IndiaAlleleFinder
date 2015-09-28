@@ -1,8 +1,6 @@
 <!DOCTYPE html>
     <head>
         <meta charset="utf-8">
-        <meta charset=utf-8>
-
         {% block head %}
         <link href='https://fonts.googleapis.com/css?family=Scheherazade:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
@@ -18,7 +16,7 @@
               <div class="masthead clearfix">
                 <div class="inner">
                     <!-- <h3 class="masthead-brand">-->
-                    <div><img id="iaf-logo" src="{{ url_for('static', filename='img/logo.svg') }}" alt='logo'></h3></div>
+                    <div><img id="iaf-logo" src="{{ url_for('static', filename='img/logo.svg') }}" alt='logo'></div>
                 <nav class="navbar navbar-default">
                     <ul class="nav navbar-nav">
                       <li class="active"><a href="#">Home</a></li>
@@ -34,7 +32,7 @@
                 <p class="lead">Accepted Formats: Gene: PCSK9, Variant: 22-46615880-T-C, Multi-allelic variant: rs1800234, Region: 22:46615715-46615880</p>
                 <p class="lead">
                     <form action="{{ url_for('search') }}" method="GET" id="searchBar">
-                        <input type="search" placeholder="" >
+                        <input type="search" placeholder="type in a gene or variant" >
                         <input type="submit" style="position: absolute; top: 0; left: 0; z-index: 0; width: 1px; height: 1px; visibility: hidden;">
                     </form>  
                   <!-- <a href="#" class="btn btn-lg btn-default">Learn more</a> -->
