@@ -38,6 +38,20 @@ input[type="search"] {
   width: 40%;
 }
 
+.searchResult {
+  position: relative;
+  width: 90vw;
+  left: calc(-45vw + 50%);
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.cell {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Start the vertical centering */
 .site-wrapper-inner {
   /*vertical-align: middle;*/

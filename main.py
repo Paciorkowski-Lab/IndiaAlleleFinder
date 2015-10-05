@@ -14,30 +14,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://jzhang69:' + base64.b64decode("
 db = SQLAlchemy(app)
 
 import model
-# def connect_to_database():
-# 	return sqlite3.connect(app.config['DATABASE'])
-
-#@app.before_request
-#def before_request():
-#	g.db = connect_db()
 
 def get_db():
 	return db
 
-# @app.teardown_appcontext
-# def close_connection(exception):
-# 	db = getattr(g, '_db', None)
-# 	if db is not None:
-# 		db.close()
-
 def execute_query(query, args={}):
-	# sql lite
-	# current = get_db().execute(query, args)
-	# rows = current.fetchall()
-	# current.close()
-	#	current = db.session.query(Alleles).all()
 	current = db.session.execute(query, args)
-
 	return current
 
 @app.route('/')
@@ -74,58 +56,75 @@ def processQuery(query):
 	gene_rows = execute_query("SELECT * FROM alleles WHERE GenerefGene=:param", {"param": query})
 	return gene_rows
 
+#DOES THE FOLLOWING:
 #["(u'1'", " u'14653'", " u'14653'", " u'C'", " u'T'", " u'ncRNA_exonic'", " u'WASH7P'", " u'NA'", " u'NA'", " u'NA'", " u'Score=0.993729;Name=chr9:10843'", " u'rs62635297'", " u'NA'", " u'NA'", " u'NA'", " u'india:0.280487804878'", " u'1')"]
+#(u'12', u'53708092', u'53708092', u'A', u'G', u'exonic', u'AAAS', u'synonymous SNV', u'AAAS:NM_001173466:exon6:c.T580C:p.L194L,AAAS:NM_015665:exon7:c.T679C:p.L227L', u'Score=635;Name=lod=508', u'NA', u'rs80027466', u'Name=yes', u'Name=yes', u'NA', u'india:0.020325203252', u'12')
+#u'AAAS:NM_001173466:exon6:c.T580C:p.L194L,AAAS:NM_015665:exon7:c.T679C:p.L227L'
+# element:
+#(u'12
+#u'3433
+# u'AAAS:NM_001173466:exon6:c.T580C:p.L194L
+# element:
+# AAAS:NM_015665:exon7:c.T679C:p.L227L'
 def makeTable(results):
 	#very shady but okay for now.
 	#@todo: make this less hacky
+	header="Chr	Start	End	Ref	Alt	Func.refGene	Gene.refGene	ExonicFunc.refGene	AAChange.refGene	phastConsElements46way	genomicSuperDups	snp138	hum_mus_phastcons_chr	primates_phastcons_chr	hum_mus_vista_chr	indiaFreq	Otherinfo".split('\t')
+	#^ that thing is an array. sry guys
+
 	result = {}
 	ind = 0
 	for column in results:
 		result[ind] = []
-		print "hereereee"
-		elements = str(column).split(',')
+		# print "hereereee"
+		elements = str(column).split("', ")
+		print column
 		for e in elements:
-			result[ind].append(str(e).split("u'")[1].split("'")[0])
+		 	result[ind].append(str(e).split("u'")[1].split("')")[0])
 		ind += 1
 
 	print "result" 
 	print result
-	compiledStr = "<table class='table-striped'><tbody>"
+	compiledStr = "<table class='table table-striped table-condensed'><tbody>"
+
+	compiledStr += "<thead><tr>"
+	for thing in header:
+		compiledStr += "<td class='cell'>" + thing + "</td>"
+	compiledStr += "</tr></thead>"
+
 	for i in range(0, ind):
 		compiledStr += '<tr>'
 		for r in result[i]:
-			compiledStr += '<td>' + r + '</td>'
+			compiledStr += "<td class='cell'>" + r + "</td>"
 		compiledStr += '</tr>'
 	compiledStr += '</tbody></table>'
 	# return '<br>'.join(str(row).split(',') for row in results)
 	print compiledStr
 	return compiledStr
 	
-
-
 ###THE FOLLOWING IS EXAMPLE CODE###
-@app.route('/hello')
-@app.route('/hello/<name>')
-def hello(name=None):
+# @app.route('/hello')
+# @app.route('/hello/<name>')
+# def hello(name=None):
 #	return "Hello World!"
-	return render_template('hello.html', name=name)
+# 	return render_template('hello.html', name=name)
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-	if request.method == 'POST':
-		return do_the_login()
-	else:
-		return show_login_form()
+# @app.route('/login', methods=['GET', 'POST'])
+# def login():
+# 	if request.method == 'POST':
+# 		return do_the_login()
+# 	else:
+# 		return show_login_form()
 
-def do_the_login():
-	return "login url"
+# def do_the_login():
+# 	return "login url"
 
-def show_login_form():
-	return "login form url"
+# def show_login_form():
+# 	return "login form url"
 
-@app.route('/user/<username>')
-def showUserProfile(username):
-	return 'User: ' + username
+# @app.route('/user/<username>')
+# def showUserProfile(username):
+# 	return 'User: ' + username
 
 # with app.test_request_context():
 	# print url_for('index')

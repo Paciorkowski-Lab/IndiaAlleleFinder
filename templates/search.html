@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         {% block head %}
         <link href='https://fonts.googleapis.com/css?family=Scheherazade:400,700' rel='stylesheet' type='text/css'>
-        
+
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cover.css') }} ">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css') }}">
@@ -39,17 +39,18 @@
                 <p class="lead">Accepted Formats: Gene: PCSK9, Variant: 22-46615880-T-C, Multi-allelic variant: rs1800234, Region: 22:46615715-46615880</p>
                 <p class="lead">
                     <form action="{{ url_for('search') }}" method="GET" id="searchBar">
-                        <input type="search" name="search" placeholder="type in a gene for variant" >
+                        <input type="search" name="search" placeholder="type in a gene for variant" style="font-family: serif;">
                         <input type="submit" style="position: absolute; top: 0; left: 0; z-index: 0; width: 1px; height: 1px; visibility: hidden;">
                     </form>  
                   <!-- <a href="#" class="btn btn-lg btn-default">Learn more</a> -->
                 </p>
               </div>
-
-            <div>RESULTS</div>
-                <div>{{ query }}</div>
-                <div>{{ results }}</div>
-                <div>{{ h }}</div>
+            <!-- <div>RESULTS</div> -->
+                <!-- <div>QUERY: {{ query }}</div> -->
+                <!-- <div>RESULT: {{ results }}</div> -->
+              <div class="searchResult">
+                  {{ h|safe}}
+              </div>
 
               <div class="mastfoot">
                 <div class="inner">
