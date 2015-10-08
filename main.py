@@ -89,13 +89,13 @@ def makeTable(results):
 
 	compiledStr += "<thead><tr>"
 	for thing in header:
-		compiledStr += "<td class='cell'>" + thing + "</td>"
+		compiledStr += "<td class='cell'><div>" + thing + "</div></td>"
 	compiledStr += "</tr></thead>"
 
 	for i in range(0, ind):
 		compiledStr += '<tr>'
 		for r in result[i]:
-			compiledStr += "<td class='cell'>" + r + "</td>"
+			compiledStr += "<td class='cell'><div>" + r + "</div></td>"
 		compiledStr += '</tr>'
 	compiledStr += '</tbody></table>'
 	# return '<br>'.join(str(row).split(',') for row in results)
