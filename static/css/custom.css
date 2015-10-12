@@ -16,33 +16,46 @@ body {
   overflow: auto;
 }
 
+.navbar-default {
+  background-color: rgba(248, 248, 248, 0.6);
+}
+
 .navbar>.container-fluid .navbar-brand {
   margin-left: 10px;
-  margin-bottom: 15px;
+  padding-top: 8px;
+}
+
+.dropdown-menu {
+  font-size: 24px;
 }
 
 #iaf-logo {
-  width: 80%;
+  width: 90%;
 }
 
-.masthead {
-  position: absolute;
-  top: -160px;
+.intro {
+  position: relative;
+  top: 20%;
+  text-align: center;
+  width: 55%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.mastfoot {
+.footer {
+  font-size: 20px;
   position: absolute;
-  bottom: -25px;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 40px;
+  background-color: rgba(248, 248, 248, 0.6);
 }
 
 .cover-heading {
   font-size: 44px;
   margin-bottom: 0px;
 }
-
-/*.cover-container{
-  width: 90%;
-}*/
 
 .lead {
   font-size: 24px;
@@ -74,7 +87,6 @@ input[type="search"] {
   /*white-space: nowrap;*/
   /*text-overflow: ellipsis;*/
 }
-
 /* Start the vertical centering */
 .site-wrapper-inner {
   position: relative;
@@ -90,10 +102,7 @@ input[type="search"] {
 .navbar .navbar-nav{
 	display: inline-block;
 	float: none;
-}
-
-.navbar-default {
-  font-size: 1.2em;
+  margin-top: 10px;
 }
 
 .navbar .navbar-collapse{

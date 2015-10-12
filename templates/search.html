@@ -1,74 +1,10 @@
-<!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        {% block head %}
-        <link href='https://fonts.googleapis.com/css?family=Scheherazade:400,700' rel='stylesheet' type='text/css'>
-
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cover.css') }} ">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css') }}">
-        <title>India Allele Finder</title>
-        {% endblock %}
-    </head>
-    <body>
-        <div class="site-wrapper">
-          <div class="site-wrapper-inner">
-            <div class="cover-container">
-              <div class="masthead clearfix"> <!--nav bar-->
-                <div class="inner">
-                    <!-- <h3 class="masthead-brand">-->
-                  <div><img id="iaf-logo" src="{{ url_for('static', filename='img/logo.svg') }}" alt='logo'></div>
-                  <nav class="navbar navbar-default">
-                    <ul class="nav navbar-nav">
-                      <li class="active"><a href="#">Home</a></li>
-                      <li><a href="#">Download</a></li>
-                      <li><a href="#">About</a></li>
-                      <!-- <form action="{{ url_for('search') }}" method="GET" class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                          <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                      </form> -->
-                      </ul>
-                    </nav>
-                  </div>
-              </div>
-
-              <div class="inner cover">
-                <!-- <h1 class="cover-heading">Find Allele Frequencies for the Indian Population.</h1> -->
-                <p class="lead">Accepted Formats: Gene: PCSK9, Variant: 22-46615880-T-C, Multi-allelic variant: rs1800234, Region: 22:46615715-46615880</p>
-                <p class="lead">
-                    <form action="{{ url_for('search') }}" method="GET" id="searchBar">
-                        <input type="search" name="search" placeholder="type in a gene for variant" style="font-family: serif;">
-                        <input type="submit" style="position: absolute; top: 0; left: 0; z-index: 0; width: 1px; height: 1px; visibility: hidden;">
-                    </form>  
-                  <!-- <a href="#" class="btn btn-lg btn-default">Learn more</a> -->
-                </p>
-              </div>
-            <!-- <div>RESULTS</div> -->
-                <!-- <div>QUERY: {{ query }}</div> -->
-                <!-- <div>RESULT: {{ results }}</div> -->
-              <div class="searchResult">
-                  {{ h|safe}}
-              </div>
-
-              <div class="mastfoot">
-                <div class="inner">
-                  <div>cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>. modded by <a href="https://twitter.com/imyjimmy">@imyjimmy</a>. made for <a href="https://paciorkowski-lab.urmc.rochester.edu/home">Paciorkowski Lab</a>.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </body>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- <script src="../../dist/js/bootstrap.min.js"></script> -->
-    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }} "></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-</html>
+{% extends "base_template.html" %}
+{% block mainContent %}
+  {% block searchForm %}
+    {{ super() }}
+    
+  {% endblock %}
+  <div class="searchResult">
+      {{ h|safe}}
+  </div>
+{% endblock %}
