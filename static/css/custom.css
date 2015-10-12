@@ -16,6 +16,11 @@ body {
   overflow: auto;
 }
 
+.navbar>.container-fluid .navbar-brand {
+  margin-left: 10px;
+  margin-bottom: 15px;
+}
+
 #iaf-logo {
   width: 80%;
 }
@@ -35,6 +40,10 @@ body {
   margin-bottom: 0px;
 }
 
+/*.cover-container{
+  width: 90%;
+}*/
+
 .lead {
   font-size: 24px;
 }
@@ -51,9 +60,9 @@ input[type="search"] {
 
 .searchResult {
   position: relative;
-  width: 90vw;
+  width: 80vw;
   left: calc(-45vw + 50%);
-  font-size: 18px;
+  font-size: 16px;
   /*white-space: nowrap;*/
 }
 
@@ -69,7 +78,7 @@ input[type="search"] {
 /* Start the vertical centering */
 .site-wrapper-inner {
   position: relative;
-  top: 20%;
+  top: 15%;
 }
 
 @-moz-document url-prefix() { 
