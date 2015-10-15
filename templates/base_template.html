@@ -1,3 +1,12 @@
+        {% set navigation_bar = [
+          ('./', 'index', 'Home'),
+          ('#', 'browse', 'Browse By <b class="caret"></b>'),
+          ('/sources.html', 'sources', 'Sources'),
+          ('/methods.html', 'methods', 'Methods'),
+          ('/docs.html', 'docs', 'Docs'),
+          ('/about.html', 'about', 'About')
+          ] -%}
+        {% set active_page = active_page|default('index') -%}
 <!DOCTYPE html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -9,6 +18,26 @@
       <meta charset="utf-8">
       <meta name="generator" content="Bootply" />
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+      <link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('static', filename='img/favicon/apple-icon-57x57.png') }}">
+      <link rel="apple-touch-icon" sizes="60x60" href="{{ url_for('static', filename='img/favicon/apple-icon-60x60.png') }}">
+      <link rel="apple-touch-icon" sizes="72x72" href="{{ url_for('static', filename='img/favicon/apple-icon-72x72.png') }}">
+      <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='img/favicon/apple-icon-76x76.png') }}">
+      <link rel="apple-touch-icon" sizes="114x114" href="{{ url_for('static', filename='img/favicon/apple-icon-114x114.png') }}">
+      <link rel="apple-touch-icon" sizes="120x120" href="{{ url_for('static', filename='img/favicon/apple-icon-120x120.png') }}">
+      <link rel="apple-touch-icon" sizes="144x144" href="{{ url_for('static', filename='img/favicon/apple-icon-144x144.png') }}">
+      <link rel="apple-touch-icon" sizes="152x152" href="{{ url_for('static', filename='img/favicon/apple-icon-152x152.png') }}">
+      <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/favicon/apple-icon-180x180.png') }}">
+      <link rel="icon" type="image/png" sizes="192x192"  href="{{ url_for('static', filename='img/favicon/android-icon-192x192.png') }}">
+      <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon/favicon-32x32.png') }}">
+      <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='img/favicon/favicon-96x96.png') }}">
+      <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicon/favicon-16x16.png') }}">
+      <link rel="manifest" href="{{ url_for('static', filename='img/favicon/manifest.json') }}">
+      <meta name="msapplication-TileColor" content="#ffffff">
+      <meta name="msapplication-TileImage" content="{{ url_for('static', filename='/ms-icon-144x144.png') }}">
+      <meta name="theme-color" content="#ffffff">
+      <!-- that was so many favicons -->
+
       <link href='https://fonts.googleapis.com/css?family=Scheherazade:400,700' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cover.css') }} ">
@@ -31,22 +60,23 @@
         </button>
       </div>
       <div class="container-fluid collapse navbar-collapse">
-        <a class="navbar-brand" href="#"><img id="iaf-logo" src="{{ url_for('static', filename='img/logo.svg') }}" alt='logo'></a>
+        <a class="navbar-brand" href="./"><img id="iaf-logo" src="{{ url_for('static', filename='img/logo.svg') }}" alt='logo'></a>
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li class="dropdown">
+          <li {% if active_page == 'index' %} class="active" {% endif %}><a href="./">Home</a></li>
+          <li class="{% if active_page == 'browse' %}active{% endif %} dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Browse By <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="./gene.html">Gene</a></li>
-              <li><a href="./chr.html">Chromosome</a></li>
+              <li><a href="./gene">Gene</a></li>
+              <li><a href="./chr">Chromosome</a></li>
               <!-- <li class="divider"></li> -->
              <!--  <li><a href="#contact">Contact Us</a></li> -->
             </ul>
           </li>
-          <li><a href="/sources.html">Sources</a></li>
-          {# <li class="divider-vertical"></li> #}
-          <li><a href="/methods.html">Methods</a></li>
-          <li><a href="/about.html">About</a></li>
+          <li><a href="/sources.html">Sources</a></li><!-- download the compiled vcf, other code, github-->
+          <li><a href="/methods.html">Methods</a></li> <!-- brief summary, how it was put together -->
+          <li><a href="/docs.html">Docs</a></li> <!--explains the code base, how to set up local instance -->
+          <li><a href="/about.html">About</a></li> <!-- about the lab, the people -->
+           {# <li class="divider-vertical"></li> #}
         </ul>
       </div>
     </nav>
@@ -59,8 +89,8 @@
       {% block searchForm %}
       <p class="lead">
           <form action="{{ url_for('search') }}" method="GET" id="searchBar">
-              <input type="search" name="search" placeholder="{{ searchText }}" style="font-family: serif;">
-              <input type="submit" style="position: absolute; top: 0; left: 0; z-index: 0; width: 1px; height: 1px; visibility: hidden;">
+              <input type="search" name="search" placeholder="{{ searchText }}" style="font-family: serif; z-index: 1000;">
+              <input type="submit" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; visibility: hidden;">
           </form>  
         <!-- <a href="#" class="btn btn-lg btn-default">Learn more</a> -->
       </p>
@@ -70,7 +100,7 @@
     {% block footer %}
     <div class="footer">
       <div class="container">
-        Styled by <a href="https://twitter.com/imyjimmy">@imyjimmy</a>. made for <a href="https://paciorkowski-lab.urmc.rochester.edu/home">Paciorkowski Lab</a>.</div>
+        Styled by <a href="https://twitter.com/imyjimmy">@imyjimmy</a>. Made for <a href="https://paciorkowski-lab.urmc.rochester.edu/home">Paciorkowski Lab</a>.</div>
       </div>
       <!--<div>Made with <a href="http://getbootstrap.com">Bootstrap</a>, based on <a href="http://www.bootply.com/71142">Fixed Width Layout</a>. -->
     </div>

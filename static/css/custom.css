@@ -18,6 +18,8 @@ body {
 
 .navbar-default {
   background-color: rgba(248, 248, 248, 0.6);
+  font-family: 'ImprintMT-Shadow', 'Scheherazade', serif;
+  font-size: 22px;
 }
 
 .navbar>.container-fluid .navbar-brand {
@@ -26,7 +28,7 @@ body {
 }
 
 .dropdown-menu {
-  font-size: 24px;
+  font-size: 18px;
 }
 
 #iaf-logo {
@@ -74,8 +76,10 @@ input[type="search"] {
 .searchResult {
   position: relative;
   width: 80vw;
+  top: 40px;
   left: calc(-45vw + 50%);
   font-size: 16px;
+  z-index: 0;
   /*white-space: nowrap;*/
 }
 

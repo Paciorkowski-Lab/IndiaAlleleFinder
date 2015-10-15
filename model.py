@@ -34,5 +34,5 @@ class Alleles(db.Model):
 		pass
 
 	def __repr__(self):
-		return '<div>Hello World</div>'
+		return '<div>Hello World</div>' #what should be done with this..?
 
