@@ -2,6 +2,10 @@
 Tool for annotation of next generation sequencing data with allele frequencies of populations from India.
 
 #How to set up on RedHat:
+##Perl Version##
+ - sudo perl -MCPAN -e 'install DBD::mysql'
+
+##Python Version##
 ==Install pip==
 1. Follow these instructions: https://pip.pypa.io/en/latest/installing/
 
