@@ -28,12 +28,23 @@ The root page (/)
 
 =cut
 
+#sub hello :Global {
+#	my ( $self, $c) = @_;
+#	$c->stash(template => 'index.tt');
+#}
+
 sub index :Path :Args(0) {
-    my ( $self, $c ) = @_;
+	my ( $self, $c) = @_;
+	$c->stash(template => 'index.tt', searchText => 'type in a gene or variant', active_page => 'index');
+}
+
+#sub index :Global {
+#    my ( $self, $c ) = @_;
 
     # Hello World
-    $c->response->body( $c->welcome_message );
-}
+    #$c->response->body( $c->welcome_message );
+#	$c->stash(template => 'index.tt');
+#}
 
 =head2 default
 
