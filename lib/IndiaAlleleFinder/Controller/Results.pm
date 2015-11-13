@@ -24,7 +24,10 @@ Catalyst Controller.
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
-    $c->response->body('Matched IndiaAlleleFinder::Controller::Results in Results.');
+    #$c->response->body('Matched IndiaAlleleFinder::Controller::Results in Results.');
+    $c->stash(genes => [$c->model('IndiaAlleleFinderDB::Allele')->all]);
+
+	$c->stash(template => 'results.tt');
 }
 
 =head3 list
@@ -38,7 +41,7 @@ sub list :Local {
 
 	$c->stash(genes => [$c->model('IndiaAlleleFinderDB::Allele')->all]);
 
-	$c->stash(template => 'list.tt');
+	$c->stash(template => 'results.tt');
 }
 =encoding utf8
 

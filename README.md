@@ -3,7 +3,10 @@ Tool for annotation of next generation sequencing data with allele frequencies o
 
 #How to set up on RedHat:
 ##Perl Version##
+Random Notes
  - sudo perl -MCPAN -e 'install DBD::mysql'
+ - sudo /sbin/service mysqld start
+
 
 ##Python Version##
 ==Install pip==
