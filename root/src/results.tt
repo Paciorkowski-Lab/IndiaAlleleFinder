@@ -52,8 +52,8 @@
             </ul>
           </li>
           <li><a href="/sources.html">Sources</a></li><!-- download the compiled vcf, other code, github-->
-          <li><a href="/methods.html">Methods</a></li> <!-- brief summary, how it was put together -->
-          <li><a href="/docs.html">Docs</a></li> <!--explains the code base, how to set up local instance -->
+                                                      <!-- also explains the code base, how to set up local instance -->
+          <li><a href="/methods.html">Methods</a></li> <!-- brief summary, how it was put together --> 
           <li><a href="/about.html">About</a></li> <!-- about the lab, the people -->
           <!-- <li class="divider-vertical"></li> -->
         </ul>
@@ -80,6 +80,9 @@
     </div>
 
     <div class="searchResult">
+      <p>chr: [% chr %]</p>
+      <p>region: [% region %]</p>
+      <p>valid variant query: [% variantQuery %]</p>
       <ul class="nav nav-tabs">
         <li role="presentation" class="active"><a href="#summary" data-toggle="tab">Summary</a></li>
         <li role="presentation"><a href="#vcf" data-toggle="tab">VCF</a></li>
