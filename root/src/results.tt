@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/bootstrap.css') %]">
     <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/cover.css') %]"> 
     <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/custom.css') %]">
+    <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/tables.css') %]">
 
     <title>[% title %]</title>
 
@@ -61,33 +62,66 @@
     [% END %]
     [% PROCESS navbar %]
     [% BLOCK mainContent %]
-    <div class="intro">
-      <h1 class="cover-heading">Find Allele Frequencies for the Indian Population</h1>
-      <p class="lead">Accepted Formats: Gene: PCSK9, Variant: 22-46615880-T-C, Multi-allelic variant: rs1800234, Region: 22:46615715-46615880</p>
-      <p class="lead">
-          <form action="{{ url_for('search') }}" method="GET" id="searchBar">
-              <input type="search" name="search" placeholder="[% searchText %]" style="font-family: serif; z-index: 1000;">
-              <input type="submit" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; visibility: hidden;">
-          </form>  
-        <!-- <a href="#" class="btn btn-lg btn-default">Learn more</a> -->
-      </p>
+<!--     <div class="intro">
 
-    <table>
-    <tr><th>Title</th><th>Rating</th><th>Author(s)</th></tr>
-    [% # Display each book in a table row %]
-    [% FOREACH gene IN genes -%]
-      <tr>
-        <td>[% gene.generefgene %]</td> <!-- gene.stuff -->
-        <td></td>
-      </tr>
-    [% END -%]
-    </table>
+    <div> -->
+    <div class="row" style="z-index: 1000;">
+      <div class="col-md-6 col-md-offset-3">
+        <p class="lead">
+            <form action="[% c.uri_for('/results') %]" method="GET" id="searchBar">
+                <input type="search" name="search" placeholder="[% searchText %]" value="[% searchText %]" style="font-family: serif; z-index: 1000;">
+                <input type="submit" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; visibility: hidden;">
+            </form>  
+          <!-- <a href="#" class="btn btn-lg btn-default">Learn more</a> -->
+        </p>
+      <!--{% block searchForm %}
+        {{ super() }}
+      {% endblock %} -->
     </div>
+
+    <div class="searchResult">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#summary" data-toggle="tab">Summary</a></li>
+        <li role="presentation"><a href="#vcf" data-toggle="tab">VCF</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="summary">
+          <!-- <p>[% genes %]<p> -->
+          <!--{{ h|safe }} -->
+          <table class="pure-table pure-table-bordered pure-table-striped">
+          <tr><th>Chr</th><th>Start</th><th>End</th><th>Ref</th><th>Alt</th><th>funcrefgene</th><th>generefgene</th><th>exonicfuncrefgene</th><th>indiafreq</th><th>aachangerefgene</th><th>phasconselements46way</th><th>genomicsuperdups</th><th>snp138</th><th>hummusphastconschr</th>
+          </tr>
+          [% # this is a comment %]
+          [% FOREACH gene IN genes -%]
+            <tr>
+              <td>[% gene.chr %]</td>
+              <td>[% gene.start %]</td>
+              <td>[% gene.end %]</td>
+              <td>[% gene.ref %]</td>
+              <td>[% gene.alt %]</td>
+              <td>[% gene.funcrefgene %]</td>
+              <td>[% gene.generefgene %]</td>
+              <td>[% gene.exonicfuncrefgene %]</td>
+              <td>[% gene.indiafreq %]</td>
+              <td>[% gene.aachangerefgene %]</td>
+              <td>[% gene.phastconselements46way %]</td>
+              <td>[% gene.genomicsuperdups %]</td>
+              <td>[% gene.snp138 %]</td>
+              <td>[% gene.hummusphastconschr %]</td>
+            </tr>
+          [% END -%]
+          </table>
+      </div>
+      </div>
+        </div>
+        <div class="tab-pane" id="vcf"></div>
+      </div>
+    </div><!--searchResult -->
+      
+
     [% END %]
 
     [% PROCESS mainContent %]
-
-
 
     [% BLOCK footer %]
     <div class="footer">
@@ -105,7 +139,7 @@
   <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- <script src="../../dist/js/bootstrap.min.js"></script> -->
     <script type="text/javascript" src="[% c.uri_for('static/js/bootstrap.js') %]"></script>
     <script type="text/javascript" src="[% c.uri_for('static/js/custom.js') %]"></script>

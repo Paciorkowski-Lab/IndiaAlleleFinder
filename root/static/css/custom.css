@@ -75,9 +75,11 @@ input[type="search"] {
 
 .searchResult {
   position: relative;
-  width: 80vw;
+  overflow: auto;
+  width: 90%; /*80vw;*/
   top: 40px;
-  left: calc(-45vw + 50%);
+  /*left: calc(-45vw + 50%);*/
+  left: 6.25%;
   font-size: 16px;
   z-index: 0;
   /*white-space: nowrap;*/
