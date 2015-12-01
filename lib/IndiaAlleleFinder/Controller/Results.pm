@@ -36,9 +36,9 @@ sub index :Path :Args(0) {
 		[$c->model('IndiaAlleleFinderDB::Allele')->search({generefgene => {'like', "$query"}})]);
 
 	#search by rsID
-	$c->stash(rsID => 
+	$c->stash(genes => 
 		[$c->model('IndiaAlleleFinderDB::Allele')->search({snp138 => {'like', "$query"}})]);
-	
+
 	#search by variant: 22-46615880-T-C
 	my ($chromosome, $pos, $ref, $alt) = split(/-/, $query);
 	if ((looks_like_number($chromosome) or $chromosome eq 'X' or $chromosome eq 'Y') and 
