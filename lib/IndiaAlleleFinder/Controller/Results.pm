@@ -35,11 +35,11 @@ sub index :Path :Args(0) {
 	$c->stash(genes => 
 		[$c->model('IndiaAlleleFinderDB::Allele')->search({generefgene => {'like', "$query"}})]);
 
-	#search by rsID
-	$c->stash(genes => 
-		[$c->model('IndiaAlleleFinderDB::Allele')->search({snp138 => {'like', "$query"}})]);
+	# #search by rsID
+	# $c->stash(rsID => 
+	# 	[$c->model('IndiaAlleleFinderDB::Allele')->search({snp138 => {'like', "$query"}})]);
 
-	#search by variant: 22-46615880-T-C
+	#search by variant: 12-53701241-G-A
 	my ($chromosome, $pos, $ref, $alt) = split(/-/, $query);
 	if ((looks_like_number($chromosome) or $chromosome eq 'X' or $chromosome eq 'Y') and 
 		$pos ne '' and $ref ne '' and $alt ne '') {
@@ -53,24 +53,29 @@ sub index :Path :Args(0) {
 				start => {'like', "$pos"},
 				ref => {'like', "$ref"},
 				alt => {'like', "$alt"}
-				})])
+				})]);
 	}
 	
 	#search by region
-	#($chr, $region) = split(/:/, $query);
-	
-	#if 
-	#$c->stash(region => 
-	#	[$c->model('IndiaAlleleFinderDB::Allele')->search({chr => {'like', "$query.split(':')[0]"}})]);
-
+	#12:53701240-53701242
+	($chromosome, my $region) = split(/:/, $query);
+	my ($start, $end) = split(/-/, $region);
+	if ((looks_like_number($chromosome) or $chromosome eq 'X' or $chromosome eq 'Y') 
+		and looks_like_number($start) and looks_like_number($end)) {
+		$c->stash(genes => [$c->model('IndiaAlleleFinderDB::Allele')->search({
+			chr => {'like', "$chromosome"},
+			start => {">=" => "$start", 
+						"<=" => "$end"}
+			})]);
+	}
 
 	$c->stash(searchText => $query);
 	$c->stash(template => 'results.tt');
 
 	#ghetto debugging here we go
-	$c->stash(chr => $chromosome);
-	$c->stash(region => $pos);
-	$c->stash(variantQuery => $variantQuery);
+	# $c->stash(chr => $chromosome);
+	# $c->stash(region => $pos);
+	# $c->stash(variantQuery => $variantQuery);
 }
 
 =head3 list
