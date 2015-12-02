@@ -38,6 +38,7 @@ sub index :Path :Args(0) {
 	# #search by rsID
 	# $c->stash(rsID => 
 	# 	[$c->model('IndiaAlleleFinderDB::Allele')->search({snp138 => {'like', "$query"}})]);
+	
 
 	#search by variant: 12-53701241-G-A
 	my ($chromosome, $pos, $ref, $alt) = split(/-/, $query);
