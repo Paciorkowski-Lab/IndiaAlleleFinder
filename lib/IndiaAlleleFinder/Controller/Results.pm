@@ -29,16 +29,18 @@ sub index :Path :Args(0) {
 	
 	my $query = $c->request->param('search');
 	#$c->stash->{genes} = $query; #show everything
-	my $variantQuery = "ayyy";
 
 	#search by gene
 	$c->stash(genes => 
 		[$c->model('IndiaAlleleFinderDB::Allele')->search({generefgene => {'like', "$query"}})]);
 
-	# #search by rsID
-	# $c->stash(rsID => 
-	# 	[$c->model('IndiaAlleleFinderDB::Allele')->search({snp138 => {'like', "$query"}})]);
-	
+	#search by rsID
+	my $rs = substr($query, 0, 2);
+	my $id = substr($query, 2);
+	if (($rs eq 'RS' or $rs eq 'rs') and looks_like_number($id)) {
+		$c->stash(genes => 
+	 	[$c->model('IndiaAlleleFinderDB::Allele')->search({snp138 => {'like', "$query"}})]);
+	}
 
 	#search by variant: 12-53701241-G-A
 	my ($chromosome, $pos, $ref, $alt) = split(/-/, $query);
@@ -72,11 +74,6 @@ sub index :Path :Args(0) {
 
 	$c->stash(searchText => $query);
 	$c->stash(template => 'results.tt');
-
-	#ghetto debugging here we go
-	# $c->stash(chr => $chromosome);
-	# $c->stash(region => $pos);
-	# $c->stash(variantQuery => $variantQuery);
 }
 
 =head3 list

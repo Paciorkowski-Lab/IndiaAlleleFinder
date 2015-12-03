@@ -27,11 +27,25 @@ IndiaAlleleFinder::Controller::Root - Root Controller for IndiaAlleleFinder
 The root page (/)
 
 =cut
+sub chr :Global {
+	my ( $self, $c) = @_;
+	my @chromosomes = ();
+	
+	# my $i = 1;
+	for (my $i = 1; $i < 24; $i++) {
+		push @chromosomes, $i;	
+	}
+	push @chromosomes, 'X';
+	push @chromosomes, 'Y';
 
-#sub hello :Global {
-#	my ( $self, $c) = @_;
-#	$c->stash(template => 'index.tt');
-#}
+	#[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,"X","Y"]
+	$c->stash(template => 'browseChr.tt', chromosomes => [@chromosomes]); #assigning an array: variable => [@array]
+}
+
+sub gene :Global {
+	my ( $self, $c) = @_;
+	$c->stash(template => 'browseGene.tt');
+}
 
 sub index :Path :Args(0) {
 	my ( $self, $c) = @_;
