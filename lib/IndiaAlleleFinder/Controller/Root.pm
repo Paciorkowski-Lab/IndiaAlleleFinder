@@ -27,20 +27,43 @@ IndiaAlleleFinder::Controller::Root - Root Controller for IndiaAlleleFinder
 The root page (/)
 
 =cut
-sub chr :Global {
-	my ( $self, $c) = @_;
-	my @chromosomes = ();
+sub chr :Path('chr') :Args {
+	my ( $self, $c, $arg) = @_;
+	my @chrom1 = ();
+	my @chrom2 = ();
+	my @chrom3 = ();
+	my @chrom4 = ();
+	my @chromxy = ();
 	
 	# my $i = 1;
 	for (my $i = 1; $i < 24; $i++) {
-		push @chromosomes, $i;	
+		if ($i <= 6) {
+			push @chrom1, $i;
+		}
+		if ($i > 6 and $i <= 12) {
+			push @chrom2, $i;
+		}
+		if ($i > 12 and $i <= 18) {
+			push @chrom3, $i;
+		}
+		if ($i > 18) {
+			push @chrom4, $i;
+		}	
 	}
-	push @chromosomes, 'X';
-	push @chromosomes, 'Y';
+	push @chromxy, 'X';
+	push @chromxy, 'Y';
 
 	#[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,"X","Y"]
-	$c->stash(template => 'browseChr.tt', chromosomes => [@chromosomes]); #assigning an array: variable => [@array]
+	$c->stash(template => 'browseChr.tt', chrom1 => [@chrom1], chrom2 => [@chrom2], 
+	chrom3 => [@chrom3], chrom4 => [@chrom4], chromxy => [@chromxy], arg => $arg); #assigning an array: variable => [@array]
+
+	$c->stash(genes => [$c->model('IndiaAlleleFinderDB::Allele')->search({chr => {'like', "$arg"}})]);
 }
+
+# sub chr :Path('chr') :Args(1) {
+# 	my ( $self, $c, $arg) = @_;
+# 	$c->stash(template => 'browseChr.tt');
+# }
 
 sub gene :Global {
 	my ( $self, $c) = @_;

@@ -27,7 +27,7 @@
     <body>
 [% END %]
 
-  	[% PROCESS head %]
+    [% PROCESS head %]
     [% BLOCK navbar %]
     <nav class="navbar navbar-default">
       <div class="navbar-header">
@@ -43,17 +43,16 @@
         <ul class="nav navbar-nav navbar-right">
           <li [% IF active_page == 'index' %] class="active" [% END %]><a href="./">Home</a></li>
           <li class="[% IF active_page == 'browse' %]active[% END %] dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Browse By <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="./gene">Gene</a></li>
-              <li><a href="./chr">Chromosome</a></li>
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">Browse By <b class="caret"></b></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/gene">Gene</a></li>
+              <li><a href="/chr">Chromosome</a></li>
               <!-- <li class="divider"></li> -->
              <!--  <li><a href="#contact">Contact Us</a></li> -->
             </ul>
           </li>
           <li><a href="/sources.html">Sources</a></li><!-- download the compiled vcf, other code, github-->
-                                                      <!-- also explains the code base, how to set up local instance -->
-          <li><a href="/methods.html">Methods</a></li> <!-- brief summary, how it was put together --> 
+          <li><a href="/methods.html">Methods</a></li> <!-- brief summary, how it was put together -->
           <li><a href="/about.html">About</a></li> <!-- about the lab, the people -->
           <!-- <li class="divider-vertical"></li> -->
         </ul>
@@ -61,9 +60,9 @@
     </nav>
     [% END %]
     [% PROCESS navbar %]
-    [% BLOCK mainContent %]
-<!--     <div class="intro">
 
+    [% BLOCK mainContent %]
+    <!--     <div class="intro">
     <div> -->
     <div class="row" style="z-index: 1000;">
       <div class="col-md-6 col-md-offset-3">
@@ -79,53 +78,50 @@
       {% endblock %} -->
     </div>
 
-    <div class="searchResult">
-      <p>chr: [% chr %]</p>
-      <p>region: [% region %]</p>
-      <p>valid variant query: [% variantQuery %]</p>
-      <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#summary" data-toggle="tab">Summary</a></li>
-        <li role="presentation"><a href="#vcf" data-toggle="tab">VCF</a></li>
-      </ul>
-      <div class="tab-content">
-        <div class="tab-pane active" id="summary">
-          <!-- <p>[% genes %]<p> -->
-          <!--{{ h|safe }} -->
-          <table class="pure-table pure-table-bordered pure-table-striped">
-          <tr><th>Chr</th><th>Start</th><th>End</th><th>Ref</th><th>Alt</th><th>funcrefgene</th><th>generefgene</th><th>exonicfuncrefgene</th><th>indiafreq</th><th>aachangerefgene</th><th>phasconselements46way</th><th>genomicsuperdups</th><th>snp138</th><th>hummusphastconschr</th>
-          </tr>
-          [% # this is a comment %]
-          [% FOREACH gene IN genes -%]
-            <tr>
-              <td>[% gene.chr %]</td>
-              <td>[% gene.start %]</td>
-              <td>[% gene.end %]</td>
-              <td>[% gene.ref %]</td>
-              <td>[% gene.alt %]</td>
-              <td>[% gene.funcrefgene %]</td>
-              <td>[% gene.generefgene %]</td>
-              <td>[% gene.exonicfuncrefgene %]</td>
-              <td>[% gene.indiafreq %]</td>
-              <td>[% gene.aachangerefgene %]</td>
-              <td>[% gene.phastconselements46way %]</td>
-              <td>[% gene.genomicsuperdups %]</td>
-              <td>[% gene.snp138 %]</td>
-              <td>[% gene.hummusphastconschr %]</td>
-            </tr>
-          [% END -%]
-          </table>
-      </div>
-      </div>
+        <div class="searchResult">
+          <p>chr: [% chr %]</p>
+          <p>region: [% region %]</p>
+          <p>valid variant query: [% variantQuery %]</p>
+          <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#summary" data-toggle="tab">Summary</a></li>
+            <li role="presentation"><a href="#vcf" data-toggle="tab">VCF</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="summary">
+              <!-- <p>[% genes %]<p> -->
+              <!--{{ h|safe }} -->
+              <table class="pure-table pure-table-bordered pure-table-striped">
+              <tr><th>Chr</th><th>Start</th><th>End</th><th>Ref</th><th>Alt</th><th>funcrefgene</th><th>generefgene</th><th>exonicfuncrefgene</th><th>indiafreq</th><th>aachangerefgene</th><th>phasconselements46way</th><th>genomicsuperdups</th><th>snp138</th><th>hummusphastconschr</th>
+              </tr>
+              [% # this is a comment %]
+              [% FOREACH gene IN genes -%]
+                <tr>
+                  <td>[% gene.chr %]</td>
+                  <td>[% gene.start %]</td>
+                  <td>[% gene.end %]</td>
+                  <td>[% gene.ref %]</td>
+                  <td>[% gene.alt %]</td>
+                  <td>[% gene.funcrefgene %]</td>
+                  <td>[% gene.generefgene %]</td>
+                  <td>[% gene.exonicfuncrefgene %]</td>
+                  <td>[% gene.indiafreq %]</td>
+                  <td>[% gene.aachangerefgene %]</td>
+                  <td>[% gene.phastconselements46way %]</td>
+                  <td>[% gene.genomicsuperdups %]</td>
+                  <td>[% gene.snp138 %]</td>
+                  <td>[% gene.hummusphastconschr %]</td>
+                </tr>
+              [% END -%]
+              </table>
+          </div>
+          </div>
         </div>
         <div class="tab-pane" id="vcf"></div>
       </div>
-    </div><!--searchResult -->
-      
-
+    <!-- </div>searchResult  -->
     [% END %]
 
     [% PROCESS mainContent %]
-
     [% BLOCK footer %]
     <div class="footer">
       <div class="container">

@@ -46,10 +46,6 @@ sub index :Path :Args(0) {
 	my ($chromosome, $pos, $ref, $alt) = split(/-/, $query);
 	if ((looks_like_number($chromosome) or $chromosome eq 'X' or $chromosome eq 'Y') and 
 		$pos ne '' and $ref ne '' and $alt ne '') {
-		#we have a valid variant query.
-		$variantQuery = "yooo";
-		$c->stash(variantQuery => $variantQuery);
-
 		$c->stash(genes => 
 			[$c->model('IndiaAlleleFinderDB::Allele')->search({
 				chr => {'like', "$chromosome"}, 
