@@ -1,0 +1,124 @@
+
+@font-face {
+  font-family: 'ImprintMT-Shadow';
+  src: url('/static/fonts/ImprintMT-Shadow.eot?#iefix') format('embedded-opentype'),  
+  url('/static/fonts/ImprintMT-Shadow.woff') format('woff'), 
+  url('/static/fonts/ImprintMT-Shadow.ttf')  format('truetype'), 
+  url('/static/fonts/ImprintMT-Shadow.svg#ImprintMT-Shadow') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body { 
+	/*font-family: 'ImprintMT-Shadow';*/
+  font-family: 'Scheherazade', serif;
+  font-size: 28px;
+  overflow: auto;
+}
+
+.navbar-default {
+  background-color: rgba(248, 248, 248, 0.6);
+  font-family: 'ImprintMT-Shadow', 'Scheherazade', serif;
+  font-size: 22px;
+}
+
+.navbar>.container-fluid .navbar-brand {
+  margin-left: 10px;
+  padding-top: 8px;
+}
+
+.dropdown-menu {
+  font-size: 18px;
+}
+
+#iaf-logo {
+  width: 90%;
+}
+
+.intro {
+  position: relative;
+  top: 20%;
+  text-align: center;
+  width: 55%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer {
+  font-size: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 40px;
+  background-color: rgba(248, 248, 248, 0.6);
+}
+
+.cover-heading {
+  font-size: 44px;
+  margin-bottom: 0px;
+}
+
+.lead {
+  font-size: 24px;
+}
+
+#searchBar {
+  font-size: 16px;
+  margin: 0 auto;
+  /*width: 40%;*/
+}
+
+input[type="search"] {
+  width: 40%;
+}
+
+.searchResult {
+  position: relative;
+  overflow: auto;
+  width: 90%; /*80vw;*/
+  top: 40px;
+  /*left: calc(-45vw + 50%);*/
+  left: 6.25%;
+  font-size: 16px;
+  z-index: 0;
+  /*white-space: nowrap;*/
+}
+
+.cell {
+  max-width: 100px;
+  min-height: 80px;
+  overflow: visible;
+  word-wrap: break-word;
+  /*white-space: nowrap;*/
+  /*text-overflow: ellipsis;*/
+}
+/* Start the vertical centering */
+.site-wrapper-inner {
+  position: relative;
+  top: 15%;
+}
+
+@-moz-document url-prefix() { 
+  .site-wrapper-inner {
+     padding-top: 15%;
+  }
+}
+
+.navbar .navbar-nav{
+	display: inline-block;
+	float: none;
+  margin-top: 10px;
+}
+
+.navbar .navbar-collapse{
+	text-align: center;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #333;
+  background-color: rgba(0,0,0,0);
+  text-decoration: underline;
+}

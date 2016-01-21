@@ -95,3 +95,6 @@ mysql --u root --p IndiaAlleleFinderDB < mysql-dump.sql
 
 then edit the corresponding line in main.py: 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost/indiaAlleleFinderDB'
+
+> Written with [StackEdit](https://stackedit.io/).
+

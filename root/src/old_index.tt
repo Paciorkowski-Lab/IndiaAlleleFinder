@@ -1,0 +1,103 @@
+[% BLOCK head %]
+  <meta charset="utf-8">
+  <meta name="generator" content="Bootply" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link href='https://fonts.googleapis.com/css?family=Scheherazade:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/bootstrap.css') %]">
+  <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/cover.css') %]"> 
+  <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/custom.css') %]">
+
+  <title>[% title %]</title>
+
+  <!--[if lt IE 9]> HTML5Shiv
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  [% END %]
+
+    [% BLOCK navbar %]
+    <nav class="navbar navbar-default">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <div class="container-fluid collapse navbar-collapse">
+        <a class="navbar-brand" href="./"><img id="iaf-logo" src="[% c.uri_for('/static/images/logo.svg') %]" alt='logo'></a>
+        <ul class="nav navbar-nav navbar-right">
+          <li [% IF active_page == 'index' %] class="active" [% END %]><a href="./">Home</a></li>
+          <li class="[% IF active_page == 'browse' %]active[% END %] dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Browse By <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="./gene">Gene</a></li>
+              <li><a href="./chr">Chromosome</a></li>
+              <!-- <li class="divider"></li> -->
+             <!--  <li><a href="#contact">Contact Us</a></li> -->
+            </ul>
+          </li>
+          <li><a href="/sources.html">Sources</a></li><!-- download the compiled vcf, other code, github-->
+          <li><a href="/methods.html">Methods</a></li> <!-- brief summary, how it was put together -->
+          <li><a href="/about.html">About</a></li> <!-- about the lab, the people -->
+          <!-- <li class="divider-vertical"></li> -->
+        </ul>
+      </div>
+    </nav>
+    [% END %]
+
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    [% PROCESS head title="India Allele Finderrr" %]
+  </head>
+  <body>
+
+    [% PROCESS navbar %]
+    [% BLOCK mainContent %]
+    <div class="intro">
+      <h1 class="cover-heading">Find Allele Frequencies for the Indian Population</h1>
+      <p class="lead">Accepted Formats: Gene: PCSK9, Variant: 22-46615880-T-C, Multi-allelic variant: rs1800234, Region: 22:46615715-46615880</p>
+      <p class="lead">
+          <form action="{{ url_for('search') }}" method="GET" id="searchBar">
+              <input type="search" name="search" placeholder="[% searchText %]" style="font-family: serif; z-index: 1000;">
+              <input type="submit" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; visibility: hidden;">
+          </form>  
+        <!-- <a href="#" class="btn btn-lg btn-default">Learn more</a> -->
+      </p>
+    </div>
+    [% END %]
+
+    [% PROCESS mainContent %]
+    [% BLOCK footer %]
+    <div class="footer">
+      <div class="container">
+        Styled by <a href="https://twitter.com/imyjimmy">@imyjimmy</a>. Made for <a href="https://paciorkowski-lab.urmc.rochester.edu/home">Paciorkowski Lab</a>.</div>
+      </div>
+      <!--<div>Made with <a href="http://getbootstrap.com">Bootstrap</a>, based on <a href="http://www.bootply.com/71142">Fixed Width Layout</a>. -->
+    </div>
+    [% END %]
+
+    [% PROCESS footer %]
+  </body>
+  
+  [% BLOCK jsEnd %]
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- <script src="../../dist/js/bootstrap.min.js"></script> -->
+    <script type="text/javascript" src="[% c.uri_for('static/js/bootstrap.js') %]"></script>
+    <script type="text/javascript" src="[% c.uri_for('static/js/custom.js') %]"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script type="text/javascript" src="[% c.uri_for('static/js/ie10-viewport-bug-workaround.js') %]"></script>
+  [% END %]
+  [% PROCESS jsEnd %]
+</html>
