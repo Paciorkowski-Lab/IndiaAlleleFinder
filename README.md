@@ -76,17 +76,23 @@ Or whatever port you might wish to run it on.
 
 ##Python Version (In Progress)
 First, Install pip:
+
 1. Follow these instructions: https://pip.pypa.io/en/latest/installing/
 Download the following: https://bootstrap.pypa.io/get-pip.py
 and run python get-pip.py
 
 Next, Install Flask and and its Associated Packages
+
 2. Now, pip install flask. http://flask.pocoo.org/docs/0.10/installation/#installation
 *Make sure you have mysql56-server or its equivalent installed. for example on a mac this would be: sudo port install mysql56-server
+
 3. sudo pip install MySQL-python
+
 4. sudo pip install flask-mysqldb
+
 5. sudo pip install flask-SQLAlchemy
 Go to the directory where you've downloaded India Allele Finder, and Run It:
+
 6. python main.py &
 
 ###Flask MySQL Database Configuration
