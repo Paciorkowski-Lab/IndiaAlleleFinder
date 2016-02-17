@@ -43,7 +43,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li [% IF active_page == 'index' %] class="active" [% END %]><a href="./">Home</a></li>
           <li class="[% IF active_page == 'browse' %]active[% END %] dropdown">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown">Browse By <b class="caret"></b></a>
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">Browse Chr <b class="caret"></b></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="/gene">Gene</a></li>
               <li><a href="/chr">Chromosome</a></li>
@@ -79,9 +79,9 @@
     </div>
 
         <div class="searchResult">
-          <p>chr: [% chr %]</p>
+         <!-- <p>chr: [% chr %]</p>
           <p>region: [% region %]</p>
-          <p>valid variant query: [% variantQuery %]</p>
+          <p>valid variant query: [% variantQuery %]</p> -->
           <ul class="nav nav-tabs">
             <li role="presentation" class="active"><a href="#summary" data-toggle="tab">Summary</a></li>
             <li role="presentation"><a href="#vcf" data-toggle="tab">VCF</a></li>
@@ -125,7 +125,7 @@
     [% BLOCK footer %]
     <div class="footer">
       <div class="container">
-        Styled by <a href="https://twitter.com/imyjimmy">@imyjimmy</a>. Made for <a href="https://paciorkowski-lab.urmc.rochester.edu/home">Paciorkowski Lab</a>.</div>
+        Styled by Jimmy Zhang. Made for <a href="https://paciorkowski-lab.urmc.rochester.edu/home">Paciorkowski Lab</a>.</div>
       </div>
       <!--<div>Made with <a href="http://getbootstrap.com">Bootstrap</a>, based on <a href="http://www.bootply.com/71142">Fixed Width Layout</a>. -->
     </div>

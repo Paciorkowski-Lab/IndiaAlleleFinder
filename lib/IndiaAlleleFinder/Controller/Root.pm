@@ -60,15 +60,20 @@ sub chr :Path('chr') :Args {
 	$c->stash(genes => [$c->model('IndiaAlleleFinderDB::Allele')->search({chr => {'like', "$arg"}})]);
 }
 
-# sub chr :Path('chr') :Args(1) {
-# 	my ( $self, $c, $arg) = @_;
-# 	$c->stash(template => 'browseChr.tt');
-# }
+sub sources :Path('sources.html') :Args(0) {
+	my ( $self, $c) = @_;
+	$c->stash(template => 'sources.tt', active_page => 'sources');
+}
+
+sub methods :Path('methods.html') :Args(0) {
+	my ( $self, $c) = @_;
+	$c->stash(template => 'methods.tt', active_page => 'methods');
+}
 
 sub gene :Global {
 	my ( $self, $c) = @_;
 	$c->stash(template => 'browseGene.tt');
-}
+} #might delete this.
 
 sub index :Path :Args(0) {
 	my ( $self, $c) = @_;

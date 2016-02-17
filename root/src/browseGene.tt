@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/bootstrap.css') %]">
     <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/cover.css') %]"> 
     <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/custom.css') %]">
+    <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/tables.css') %]">
 
     <title>[% title %]</title>
 
@@ -41,8 +42,8 @@
         <a class="navbar-brand" href="./"><img id="iaf-logo" src="[% c.uri_for('/static/images/logo.svg') %]" alt='logo'></a>
         <ul class="nav navbar-nav navbar-right">
           <li [% IF active_page == 'index' %] class="active" [% END %]><a href="./">Home</a></li>
-          <li class="[% IF active_page == 'browse' %]active[% END %] dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Browse By <b class="caret"></b></a>
+          <li role="presentation" class="[% IF active_page == 'browse' %]active[% END %] dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Browse Chr <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="./gene">Gene</a></li>
               <li><a href="./chr">Chromosome</a></li>
@@ -61,12 +62,97 @@
     [% PROCESS navbar %]
 
     [% BLOCK mainContent %]
-    
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="page-header">
+            <a class="anchor" name="#"></a>
+            <h1><a href="#" style="color: black;">Chromosomes, [% arg %]</a></h1>
+          </div>
+        </div>
+      </div>
+      <div class="optionPanel" style="background-color:#e4e4e4; opacity: 0.8;">
+        <div class="row">
+          [% FOREACH chr IN chrom1 -%]
+          <div class="col-md-2" style="opacity: 1.0;"><a href="/chr/[% chr %]">[% chr %]</a></div>
+          [% END -%]
+        </div>
+        <div class="row">
+          [% FOREACH chr IN chrom2 -%]
+          <div class="col-md-2"><a href="/chr/[% chr %]">[% chr %]</a></div>
+          [% END -%]
+        </div>
+        <div class="row">
+          [% FOREACH chr IN chrom3 -%]
+          <div class="col-md-2"><a href="/chr/[% chr %]">[% chr %]</a></div>
+          [% END -%]
+        </div>
+        <div class="row">
+          [% FOREACH chr IN chrom4 -%]
+          <div class="col-md-2"><a href="/chr/[% chr %]">[% chr %]</a></div>
+          [% END -%]
+          <div class="col-md-1"><a href="/chr/X">X</a></div>
+          <div class="col-md-1"><a href="/chr/Y">Y</a></div>
+        </div>
+      </div>
+      <!--search results -->
+    </div>  
+    <div class="row" style="z-index: 1000;">
+      <div class="col-md-6 col-md-offset-3">
+        <p class="lead">
+            <form action="[% c.uri_for('/results') %]" method="GET" id="searchBar">
+                <input type="search" name="search" placeholder="[% searchText %]" value="[% searchText %]" style="font-family: serif; z-index: 1000;">
+                <input type="submit" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; visibility: hidden;">
+            </form>  
+          <!-- <a href="#" class="btn btn-lg btn-default">Learn more</a> -->
+        </p>
+    </div>
+
+        <div class="searchResult">
+<!--           <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#summary" data-toggle="tab">Summary</a></li>
+            <li role="presentation"><a href="#vcf" data-toggle="tab">VCF</a></li>
+          </ul> -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="summary">
+              <!-- <p>[% genes %]<p> -->
+              <!--{{ h|safe }} -->
+              <table class="pure-table pure-table-bordered pure-table-striped">
+              <tr><th>Chr</th><th>Start</th><th>End</th><th>Ref</th><th>Alt</th><th>funcrefgene</th><th>generefgene</th><th>exonicfuncrefgene</th><th>indiafreq</th><th>aachangerefgene</th><th>phasconselements46way</th><th>genomicsuperdups</th><th>snp138</th><th>hummusphastconschr</th>
+              </tr>
+              [% # this is a comment %]
+              [% FOREACH gene IN genes -%]
+                <tr>
+                  <td>[% gene.chr %]</td>
+                  <td>[% gene.start %]</td>
+                  <td>[% gene.end %]</td>
+                  <td>[% gene.ref %]</td>
+                  <td>[% gene.alt %]</td>
+                  <td>[% gene.funcrefgene %]</td>
+                  <td>[% gene.generefgene %]</td>
+                  <td>[% gene.exonicfuncrefgene %]</td>
+                  <td>[% gene.indiafreq %]</td>
+                  <td>[% gene.aachangerefgene %]</td>
+                  <td>[% gene.phastconselements46way %]</td>
+                  <td>[% gene.genomicsuperdups %]</td>
+                  <td>[% gene.snp138 %]</td>
+                  <td>[% gene.hummusphastconschr %]</td>
+                </tr>
+              [% END -%]
+              </table>
+          </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="vcf"></div>
+      </div>
+    [% END %]
+
+    [% PROCESS mainContent %]
     
     [% BLOCK footer %]
     <div class="footer">
       <div class="container">
-        Styled by <a href="https://twitter.com/imyjimmy">@imyjimmy</a>. Made for <a href="https://paciorkowski-lab.urmc.rochester.edu/home">Paciorkowski Lab</a>.</div>
+        Styled by Jimmy Zhang. Made for <a href="https://paciorkowski-lab.urmc.rochester.edu/home">Paciorkowski Lab</a>.</div>
       </div>
       <!--<div>Made with <a href="http://getbootstrap.com">Bootstrap</a>, based on <a href="http://www.bootply.com/71142">Fixed Width Layout</a>. -->
     </div>
