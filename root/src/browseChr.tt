@@ -40,14 +40,17 @@
       </div>
 
       <div class="container-fluid collapse navbar-collapse">
-        <a class="navbar-brand" href="./"><img id="iaf-logo" src="[% c.uri_for('/static/images/logo.svg') %]" alt='logo'></a>
+        <a class="navbar-brand" href="[% c.uri_for('/') %]"><img id="iaf-logo" src="[% c.uri_for('/static/images/logo.svg') %]" alt='logo'></a>
         <ul class="nav navbar-nav navbar-right">
-          <li [% IF active_page == 'index' %] class="active" [% END %]><a href="./">Home</a></li>
+          <li [% IF active_page == 'index' %] class="active" [% END %]><a href="[% c.uri_for('/') %]">Home</a></li>
           <li role="presentation" class="[% IF active_page == 'browse' %]active[% END %] dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Browse Chr <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="./gene">Gene</a></li>
-              <li><a href="./chr">Chromosome</a></li>
+              [% FOREACH chr IN chrom -%]
+              <li><a href="/chr/[% chr %]">[% chr %]</a></li>
+              [% END -%]
+              <!-- <li><a href="./gene">Gene</a></li>
+              <li><a href="./chr">Chromosome</a></li> -->
               <!-- <li class="divider"></li> -->
              <!--  <li><a href="#contact">Contact Us</a></li> -->
             </ul>
@@ -68,11 +71,11 @@
         <div class="col-md-2">
           <div class="page-header">
             <a class="anchor" name="#"></a>
-            <h1><a href="#" style="color: black;">Chromosomes [% arg %]</a></h1>
+            <h1><a href="#" style="color: black;">Chr: [% arg %]</a></h1>
           </div>
         </div>
       </div>
-      <div class="optionPanel" style="background-color:#e4e4e4; opacity: 0.8;">
+<!--       <div class="optionPanel" style="background-color:#e4e4e4; opacity: 0.8;">
         <div class="row">
           [% FOREACH chr IN chrom1 -%]
           <div class="col-md-2" style="opacity: 1.0;"><a href="/chr/[% chr %]">[% chr %]</a></div>
@@ -95,14 +98,14 @@
           <div class="col-md-1"><a href="/chr/X">X</a></div>
           <div class="col-md-1"><a href="/chr/Y">Y</a></div>
         </div>
-      </div>
+      </div> -->
       <!--search results -->
     </div>  
     <div class="row" style="z-index: 1000;">
       <div class="col-md-6 col-md-offset-3">
         <p class="lead">
             <form action="[% c.uri_for('/results') %]" method="GET" id="searchBar">
-                <input type="search" name="search" placeholder="[% searchText %]" value="[% searchText %]" style="font-family: serif; z-index: 1000;">
+                <input type="search" name="search" placeholder="[% searchText %]" style="font-family: serif; z-index: 1000;">
                 <input type="submit" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; visibility: hidden;">
             </form>  
           <!-- <a href="#" class="btn btn-lg btn-default">Learn more</a> -->
@@ -119,7 +122,21 @@
               <!-- <p>[% genes %]<p> -->
               <!--{{ h|safe }} -->
               <table class="pure-table pure-table-bordered pure-table-striped">
-              <tr><th>Chr</th><th>Start</th><th>End</th><th>Ref</th><th>Alt</th><th>funcrefgene</th><th>generefgene</th><th>exonicfuncrefgene</th><th>indiafreq</th><th>aachangerefgene</th><th>phasconselements46way</th><th>genomicsuperdups</th><th>snp138</th><th>hummusphastconschr</th>
+              <tr>
+                <th class="col-Chr">Chr</th>
+                <th class="col-Start">Start</th>
+                <th class="col-End">End</th>
+                <th class="col-Ref">Ref</th>
+                <th class="col-Alt">Alt</th>
+                <th class="col-funcref">funcrefgene</th>
+                <th class="col-generef">generefgene</th>
+                <th class="col-exonic">exonicfuncrefgene</th>
+                <th class="col-india">indiafreq</th>
+                <th class="col-aachangeref">aachangerefgene</th>
+                <th class="col-phascons">phasconselements46way</th>
+                <th class="col-genomicsuper">genomicsuperdups</th>
+                <th class="col-snp138">snp138</th>
+                <th class="col-hummus">hummusphastconschr</th>
               </tr>
               [% # this is a comment %]
               [% FOREACH gene IN genes -%]
@@ -132,7 +149,7 @@
                   <td>[% gene.funcrefgene %]</td>
                   <td>[% gene.generefgene %]</td>
                   <td>[% gene.exonicfuncrefgene %]</td>
-                  <td>[% gene.indiafreq %]</td>
+                  <td>[% gene.indiafreq.split(':').last %]</td>
                   <td>[% gene.aachangerefgene %]</td>
                   <td>[% gene.phastconselements46way %]</td>
                   <td>[% gene.genomicsuperdups %]</td>

@@ -23,11 +23,12 @@
         <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
       </head>
-    <body>
+    <body style="text-align: left; ">
 [% END %]
 
-  	[% PROCESS head %]
+    [% PROCESS head %]
     [% BLOCK navbar %]
+    <div class="wrap">
     <nav class="navbar navbar-default">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -44,8 +45,11 @@
           <li class="[% IF active_page == 'browse' %]active[% END %] dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Browse Chr <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="./gene">Gene</a></li>
-              <li><a href="./chr">Chromosome</a></li>
+              [% FOREACH chr IN chrom -%]
+              <li><a href="/chr/[% chr %]">[% chr %]</a></li>
+              [% END -%]
+              <!-- <li><a href="./gene">Gene</a></li>
+              <li><a href="./chr">Chromosome</a></li> -->
               <!-- <li class="divider"></li> -->
              <!--  <li><a href="#contact">Contact Us</a></li> -->
             </ul>
@@ -60,17 +64,25 @@
     [% END %]
     [% PROCESS navbar %]
     [% BLOCK mainContent %]
-    <div class="intro">
-      <h1 class="cover-heading">Find Allele Frequencies for the Indian Population</h1>
-      <p class="lead">Accepted Formats: Gene: PCSK9, Variant: 12-53701241-G-A, Multi-allelic variant: rs373872652, Region: 21:44834600-44840000</p>
-      <p class="lead">
-          <form action="[% c.uri_for('results') %]" method="GET" id="searchBar">
-              <input type="search" name="search" placeholder="[% searchText %]" style="font-family: serif; z-index: 1000;">
-              <input type="submit" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; visibility: hidden;">
-          </form>  
-        <!-- <a href="#" class="btn btn-lg btn-default">Learn more</a> -->
-      </p>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="page-header">
+            <a class="anchor" name="#"></a>
+            <h1><a href="#" style="color: black;">Sources</a></h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 lead" style="background-color: rgba(248, 248, 248, .5);">
+          <p>Download Our Code at <a href="https://github.com/Paciorkowski-Lab/IndiaAlleleFinder">Github</a>. The command line version is available for download <a href="[% c.uri_for('static/assets/commandline_vcf_annotator.tar.gz')%]">here</a>.</p>
+          <p>Download our vcf <a href="[% c.uri_for('static/assets/iaf_snv.vcf.tar.gz')%]">here</a> or get the <a href="[% c.uri_for('static/assets/mysql-dump.sql.tar.gz') %]">sql dump</a>.</p> 
+          <p></p>
+        </div>
+      </div>
     </div>
+    </div> <!--.wrap -->
     [% END %]
 
     [% PROCESS mainContent %]

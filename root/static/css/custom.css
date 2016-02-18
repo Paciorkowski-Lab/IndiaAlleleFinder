@@ -17,7 +17,7 @@ body {
 }
 
 .navbar-default {
-  background-color: rgba(248, 248, 248, 0.6);
+  background-color: rgba(248, 248, 248, 0.8);
   font-family: 'ImprintMT-Shadow', 'Scheherazade', serif;
   font-size: 22px;
 }
@@ -58,7 +58,7 @@ body {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 40px;
-  background-color: rgba(248, 248, 248, 0.6);
+  background-color: rgba(248, 248, 248, 0.8);
 }
 
 .cover-heading {

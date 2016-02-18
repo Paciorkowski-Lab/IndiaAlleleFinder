@@ -4,6 +4,59 @@ table {
     /*max-width: 180%;*/
     width: 140%;
     white-space: nowrap;}
+
+.col-Chr {
+    width: 3%;
+}
+
+.col-Start {
+    width: 6%;
+}
+
+.col-End {
+    width: 6%;
+}
+
+.col-Ref {
+    width: 3%;
+}
+
+.col-Alt {
+    width: 3%;
+}
+
+.col-funcref {
+    width: 6%;
+}
+
+.col-generef {
+    width: 6%;
+}
+
+.col-exonic {
+    width: 9%;
+}
+
+.col-india {
+    width: 6%;
+}
+
+.col-aachangeref {
+    width: 12%;
+}
+
+.col-phascons {
+    width: 11%;
+}
+
+.col-genomicsuper {
+    width: 15%;
+}
+
+.col-snp138 {
+    width: 6%;
+}
+
 /*!
 Pure v0.6.0
 Copyright 2014 Yahoo! Inc. All rights reserved.
@@ -59,11 +112,11 @@ striping:
    odd  - #f2f2f2 (light gray)
 */
 .pure-table th {
-
+    background-color: rgba(248,248,248, .9);
 }
 
 .pure-table td {
-    background-color: transparent;
+    background-color: rgba(248,248,248,.6);
     /*imyjimmy */
     white-space: nowrap;
     overflow: hidden;

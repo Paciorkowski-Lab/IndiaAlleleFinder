@@ -27,63 +27,41 @@ IndiaAlleleFinder::Controller::Root - Root Controller for IndiaAlleleFinder
 The root page (/)
 
 =cut
+
+my @chrom = ();
+	
+for (my $i = 1; $i < 23; $i++) {
+	push @chrom, $i;
+}
+push @chrom, 'X';
+push @chrom, 'Y';
+
 sub chr :Path('chr') :Args {
 	my ( $self, $c, $arg) = @_;
-	my @chrom1 = ();
-	my @chrom2 = ();
-	my @chrom3 = ();
-	my @chrom4 = ();
-	my @chromxy = ();
-	
-	# my $i = 1;
-	for (my $i = 1; $i < 23; $i++) {
-		if ($i <= 6) {
-			push @chrom1, $i;
-		}
-		if ($i > 6 and $i <= 12) {
-			push @chrom2, $i;
-		}
-		if ($i > 12 and $i <= 18) {
-			push @chrom3, $i;
-		}
-		if ($i > 18) {
-			push @chrom4, $i;
-		}	
-	}
-	push @chromxy, 'X';
-	push @chromxy, 'Y';
 
 	#[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22, "X","Y"]
-	$c->stash(template => 'browseChr.tt', chrom1 => [@chrom1], chrom2 => [@chrom2], 
-	chrom3 => [@chrom3], chrom4 => [@chrom4], chromxy => [@chromxy], arg => $arg); #assigning an array: variable => [@array]
+	$c->stash(template => 'browseChr.tt', active_page => 'browse', chrom => [@chrom], arg => $arg, searchText => 'type in a gene or variant'); #assigning an array: variable => [@array]
 
 	$c->stash(genes => [$c->model('IndiaAlleleFinderDB::Allele')->search({chr => {'like', "$arg"}})]);
 }
 
 sub sources :Path('sources.html') :Args(0) {
 	my ( $self, $c) = @_;
-	$c->stash(template => 'sources.tt', active_page => 'sources');
+	$c->stash(template => 'sources.tt', active_page => 'sources', chrom => [@chrom]);
 }
 
 sub methods :Path('methods.html') :Args(0) {
 	my ( $self, $c) = @_;
-	$c->stash(template => 'methods.tt', active_page => 'methods');
+	$c->stash(template => 'methods.tt', active_page => 'methods', chrom => [@chrom]);
 }
 
-sub gene :Global {
+sub about :Path('about.html') :Args(0) {
 	my ( $self, $c) = @_;
-	$c->stash(template => 'browseGene.tt');
-} #might delete this.
+	$c->stash(template => 'about.tt', active_page => 'about', chrom => [@chrom]);
+}
 
 sub index :Path :Args(0) {
 	my ( $self, $c) = @_;
-	my @chrom = ();
-
-	for (my $i = 1; $i < 23; $i++) {
-		push @chrom, $i;
-	}
-	push @chrom, 'X';
-	push @chrom, 'Y';
 
 	$c->stash(template => 'index.tt', searchText => 'type in a gene or variant', active_page => 'index', chrom => [@chrom]);
 }

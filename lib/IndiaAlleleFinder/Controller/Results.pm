@@ -24,6 +24,13 @@ Catalyst Controller.
 
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
+
+    my @chrom = ();
+	for (my $i = 1; $i < 23; $i++) {
+		push @chrom, $i;
+	}
+	push @chrom, 'X';
+	push @chrom, 'Y';
     #$c->response->body('Matched IndiaAlleleFinder::Controller::Results in Results.');
  	#$c->stash(genes => [$c->model('IndiaAlleleFinderDB::Allele')->all]);
 	
@@ -68,8 +75,8 @@ sub index :Path :Args(0) {
 			})]);
 	}
 
-	$c->stash(searchText => $query);
-	$c->stash(template => 'results.tt');
+	$c->stash(searchText => $query, template => 'results.tt', chrom => [@chrom]); 
+	#$c->stash();
 }
 
 =head3 list

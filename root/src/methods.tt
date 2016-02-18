@@ -23,11 +23,12 @@
         <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
       </head>
-    <body>
+    <body style="text-align: left; ">
 [% END %]
 
-  	[% PROCESS head %]
+    [% PROCESS head %]
     [% BLOCK navbar %]
+    <div class="wrap">
     <nav class="navbar navbar-default">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -42,10 +43,13 @@
         <ul class="nav navbar-nav navbar-right">
           <li [% IF active_page == 'index' %] class="active" [% END %]><a href="./">Home</a></li>
           <li class="[% IF active_page == 'browse' %]active[% END %] dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Browse Chr <b class="caret"></b></a>
+            <a class="dropdown-toggle" data-toggle="dropdown">Browse Chr <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><a href="./gene">Gene</a></li>
-              <li><a href="./chr">Chromosome</a></li>
+              [% FOREACH chr IN chrom -%]
+              <li><a href="/chr/[% chr %]">[% chr %]</a></li>
+              [% END -%]
+              <!-- <li><a href="./gene">Gene</a></li>
+              <li><a href="./chr">Chromosome</a></li> -->
               <!-- <li class="divider"></li> -->
              <!--  <li><a href="#contact">Contact Us</a></li> -->
             </ul>
@@ -60,17 +64,25 @@
     [% END %]
     [% PROCESS navbar %]
     [% BLOCK mainContent %]
-    <div class="intro">
-      <h1 class="cover-heading">Find Allele Frequencies for the Indian Population</h1>
-      <p class="lead">Accepted Formats: Gene: PCSK9, Variant: 12-53701241-G-A, Multi-allelic variant: rs373872652, Region: 21:44834600-44840000</p>
-      <p class="lead">
-          <form action="[% c.uri_for('results') %]" method="GET" id="searchBar">
-              <input type="search" name="search" placeholder="[% searchText %]" style="font-family: serif; z-index: 1000;">
-              <input type="submit" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; visibility: hidden;">
-          </form>  
-        <!-- <a href="#" class="btn btn-lg btn-default">Learn more</a> -->
-      </p>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="page-header">
+            <a class="anchor" name="#"></a>
+            <h1><a href="#" style="color: black;">Methods</a></h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1" style="background-color: rgba(248, 248, 248, .5);">
+          <h3><b>Accessing 1000 Genomes Data</b></h3><p class='lead'>Fastq data of individuals specific to Indian populations (flagged with &quot;ITU&quot; indicating Indian Telugu ancestry) available via the 1000 Genomes Project (1000 Genomes Project Consortium et al., 2010) were aggregated via ftp from the 1000 Genomes Project, and combined into two fastq files per individual, one per paired end read. We downloaded 100 fastqs out of 118 available ITU individuals from the 1000 Genomes data set. Automated shell scripts facilitated the downloading of fastq files, while an aggregator written in python concatenated fastqs of the appropriate paired end such that each individual had two fastq files of equal size (Supplemental methods and available on GitHub).</p>
+          <h3><b>Data Analysis</b></h3><p class='lead'>Fastqs were mapped with BWA 0.7.9a to hg19. The resulting bam files were then analyzed with SAMtools 0.1.19, Picard 1.114, and GATK 3.1.1. Annotation of resulting vcfs was performed with Annovar. A command line python script, indiaAlleleAnnotator.py, takes as its input a tab delineated vcf and outputs a modified vcf with an additional column representing the allele frequency among the Indian Telugu population.
+          </p>
+        </div>
+      </div>
     </div>
+    </div> <!--.wrap -->
     [% END %]
 
     [% PROCESS mainContent %]

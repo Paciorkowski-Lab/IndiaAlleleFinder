@@ -43,7 +43,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li [% IF active_page == 'index' %] class="active" [% END %]><a href="./">Home</a></li>
           <li class="[% IF active_page == 'browse' %]active[% END %] dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Browse Chr <b class="caret"></b></a>
+            <a class="dropdown-toggle" data-toggle="dropdown">Browse Chr <b class="caret"></b></a>
             <ul class="dropdown-menu">
               [% FOREACH chr IN chrom -%]
               <li><a href="/chr/[% chr %]">[% chr %]</a></li>
