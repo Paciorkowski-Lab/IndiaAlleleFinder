@@ -36,7 +36,7 @@ sub chr :Path('chr') :Args {
 	my @chromxy = ();
 	
 	# my $i = 1;
-	for (my $i = 1; $i < 24; $i++) {
+	for (my $i = 1; $i < 23; $i++) {
 		if ($i <= 6) {
 			push @chrom1, $i;
 		}
@@ -53,7 +53,7 @@ sub chr :Path('chr') :Args {
 	push @chromxy, 'X';
 	push @chromxy, 'Y';
 
-	#[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,"X","Y"]
+	#[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22, "X","Y"]
 	$c->stash(template => 'browseChr.tt', chrom1 => [@chrom1], chrom2 => [@chrom2], 
 	chrom3 => [@chrom3], chrom4 => [@chrom4], chromxy => [@chromxy], arg => $arg); #assigning an array: variable => [@array]
 
@@ -77,7 +77,15 @@ sub gene :Global {
 
 sub index :Path :Args(0) {
 	my ( $self, $c) = @_;
-	$c->stash(template => 'index.tt', searchText => 'type in a gene or variant', active_page => 'index');
+	my @chrom = ();
+
+	for (my $i = 1; $i < 23; $i++) {
+		push @chrom, $i;
+	}
+	push @chrom, 'X';
+	push @chrom, 'Y';
+
+	$c->stash(template => 'index.tt', searchText => 'type in a gene or variant', active_page => 'index', chrom => [@chrom]);
 }
 
 #sub index :Global {

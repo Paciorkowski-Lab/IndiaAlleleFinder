@@ -44,10 +44,17 @@ body {
   margin-right: auto;
 }
 
+.wrap {
+  min-height: 100%;
+  height: auto !important;
+  /*margin: 0 auto -40px;*/
+  padding: 0 0 40px;
+}
+
 .footer {
   font-size: 20px;
-  position: absolute;
-  bottom: 0;
+ /* position: absolute;
+  bottom: 0;*/
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 40px;
