@@ -122,7 +122,8 @@
                   <td>[% gene.funcrefgene %]</td>
                   <td>[% gene.generefgene %]</td>
                   <td>[% gene.exonicfuncrefgene %]</td>
-                  <td>[% gene.indiafreq.split(':').last %]</td>
+                  <td>[% gene.indiafreq %]</td>
+                  <!-- <td>[% gene.indiafreq.split(':').last %]</td> -->
                   <td>[% gene.aachangerefgene %]</td>
                   <td>[% gene.phastconselements46way %]</td>
                   <td>[% gene.genomicsuperdups %]</td>
